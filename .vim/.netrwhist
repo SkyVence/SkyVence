@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =4
+let g:netrw_dirhist_4='/home/skyvence/.config/nvim/pack/nvim/start/nvim-lspconfig'
+let g:netrw_dirhist_3='/home/skyvence/.config/nvim/pack/nvim/start'
+let g:netrw_dirhist_2='/home/skyvence/42Project/BiggestSquare/src'
+let g:netrw_dirhist_1='/home/skyvence/42Project/BiggestSquare'
