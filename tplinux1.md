@@ -4,9 +4,13 @@
 ## Configuration VM
 
 OS: Alpine linux (VM Edition)
+
 CPU: 2 Vcpu
+
 RAM: 2048MB
+
 DISK: 10GB
+
 NETWORK: Bridge Mode | IP Locale: `192.168.2.36`
 
 ## Objectif
@@ -190,4 +194,5 @@ Redem le service sshd
 ```sh
 rc-service sshd restart
 ```
+
 
