@@ -38,7 +38,7 @@ curl -H "Content-Type: application/json" -X POST -d '{"content":"Test webhook �
 Fichier sensible choisi : `/etc/secret.txt`
 
 ```
-sudo apk add inotify-tools
+apk add inotify-tools curl
 ```
 
 Script de surveillance :
@@ -65,7 +65,7 @@ done
 
 Rendre exécutable et lancer en arrière-plan :
 ```
-sudo chmod +x /usr/local/bin/watch_secret.sh
+chmod +x /usr/local/bin/watch_secret.sh
 nohup /usr/local/bin/watch_secret.sh >/var/log/watch_secret.log 2>&1 &
 ```
 
@@ -134,8 +134,8 @@ grep -E "sshd.*Accepted (publickey|password) for " "$LOG" \
 ```
 
 Rendre exécutable :
-```/dev/null/enable_ssh_check.sh#L1-1
-sudo chmod +x /usr/local/bin/check_ssh_after_hours.sh
+```
+chmod +x /usr/local/bin/check_ssh_after_hours.sh
 ```
 
 ---
@@ -157,7 +157,8 @@ Ajouter les tâches planifiées :
 ```
 
 Éditer la crontab :
-```/dev/null/edit_crontab.sh#L1-1
+```
 crontab -e
 ```
+
 
