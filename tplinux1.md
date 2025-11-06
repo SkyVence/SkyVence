@@ -94,7 +94,8 @@ echo "<!DOCTYPE html>
 Ouvrir un navigateur web et acceder a l'adresse IP de la machine virtuelle
 (http://192.168.2.36) pour verifier que la page web s'affiche correctement.
 
-Add gif here
+![tplinux-apache2gif](https://github.com/user-attachments/assets/78ac34e9-9869-4dff-89ad-ff11a1403f3d)
+
 
 ### 5. Installer le par feu (ufw)
 
@@ -148,7 +149,8 @@ rc-service apache2 restart
 Ouvrir un navigateur web et acceder a l'adresse IP de la machine virtuelle avec le port 8080
 (http://192.168.2.36:8080) pour verifier que la page web s'affiche correctement.
 
-Ajouter image ici
+<img width="2547" height="1025" alt="Screenshot 2025-11-06 230347" src="https://github.com/user-attachments/assets/ef450a96-195a-45d8-ac4d-7e3d08bc1d68" />
+
 
 ### 11. Ajouter une clef ssh sur un utilisateur avec permisions sudo
 
@@ -188,3 +190,4 @@ Redem le service sshd
 ```sh
 rc-service sshd restart
 ```
+
