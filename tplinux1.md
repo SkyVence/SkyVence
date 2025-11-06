@@ -196,3 +196,120 @@ rc-service sshd restart
 ```
 
 
+#### All in one script
+
+```sh
+#!/bin/sh
+
+set -e
+
+# Variables - Customize these for your environment
+WEB_PORT="8080"
+SSH_PORT="22"
+USERNAME="skyvence"
+USERGROUP="sky"
+
+# 1. Install Apache
+apk update
+apk add apache2
+echo "✓ Apache installed"
+
+# 2. Start Apache service at boot
+rc-service apache2 start
+rc-update add apache2 default
+echo "✓ Apache configured to start at boot"
+
+# 3. Add content to default web page
+cat > /var/www/localhost/htdocs/index.html <<'EOF'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux is Better</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: #333;
+            font-size: 48px;
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Linux is better</h1>
+</body>
+</html>
+EOF
+echo "✓ Web page created"
+
+# 4. Verify Apache is working
+rc-service apache2 status > /dev/null
+echo "✓ Apache verified"
+
+# 5. Install UFW firewall
+apk update
+apk add ufw
+rc-update add ufw
+echo "✓ UFW installed"
+
+# 6 & 7. Configure firewall
+ufw --force reset
+ufw allow $WEB_PORT/tcp
+ufw allow $SSH_PORT/tcp
+ufw default deny incoming
+ufw default allow outgoing
+ufw --force enable
+echo "✓ Firewall configured"
+
+# 8. Configure Apache to use port 8080
+sed -i "s/^Listen 80$/Listen $WEB_PORT/" /etc/apache2/httpd.conf
+echo "✓ Apache port changed to $WEB_PORT"
+
+# 9. Restart Apache
+rc-service apache2 restart
+echo "✓ Apache restarted"
+
+# 10. Verify Apache is working
+rc-service apache2 status > /dev/null
+echo "✓ Apache verified on new port"
+
+# 11. Create user with doas permissions
+echo "permit persist :$USERGROUP" >> /etc/doas.conf
+addgroup $USERGROUP 2>/dev/null || true
+adduser -G $USERGROUP $USERNAME 2>/dev/null || true
+passwd $USERNAME
+install -o $USERNAME -g $USERGROUP -m 700 -d /home/$USERNAME/.ssh
+cat > /tmp/ssh_key_temp
+install -o $USERNAME -g $USERGROUP -m 600 /tmp/ssh_key_temp /home/$USERNAME/.ssh/authorized_keys
+rm /tmp/ssh_key_temp
+echo "✓ User created with SSH key"
+
+# 12. Secure SSH
+cp /etc/ssh/sshd_config /etc/ssh/sshd_config.backup
+sed -i 's/^#*PermitRootLogin.*/PermitRootLogin no/' /etc/ssh/sshd_config
+sed -i 's/^#*PubkeyAuthentication.*/PubkeyAuthentication yes/' /etc/ssh/sshd_config
+sed -i 's/^#*PasswordAuthentication.*/PasswordAuthentication no/' /etc/ssh/sshd_config
+sed -i 's/^#*ChallengeResponseAuthentication.*/ChallengeResponseAuthentication no/' /etc/ssh/sshd_config
+grep -q "^PermitRootLogin" /etc/ssh/sshd_config || echo "PermitRootLogin no" >> /etc/ssh/sshd_config
+grep -q "^PubkeyAuthentication" /etc/ssh/sshd_config || echo "PubkeyAuthentication yes" >> /etc/ssh/sshd_config
+grep -q "^PasswordAuthentication" /etc/ssh/sshd_config || echo "PasswordAuthentication no" >> /etc/ssh/sshd_config
+grep -q "^ChallengeResponseAuthentication" /etc/ssh/sshd_config || echo "ChallengeResponseAuthentication no" >> /etc/ssh/sshd_config
+rc-service sshd restart
+echo "✓ SSH secured"
+
+echo "Configuration complete"
+```
