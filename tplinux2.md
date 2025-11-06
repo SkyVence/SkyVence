@@ -3,9 +3,13 @@
 ## Configuration VM
 
 OS: Alpine linux (VM Edition)
+
 CPU: 2 vCPU
+
 RAM: 2048MB
+
 DISK: 10GB
+
 NETWORK: Bridge Mode | IP Locale: `192.168.2.36`
 
 ## Objectif
@@ -156,3 +160,4 @@ Ajouter les tâches planifiées :
 ```/dev/null/edit_crontab.sh#L1-1
 crontab -e
 ```
+
