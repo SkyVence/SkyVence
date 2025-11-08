@@ -175,8 +175,8 @@ passwd skyvence
 Creer le home de mon nouvel utilisateur et ajouter un clef ssh
 
 ```sh
-install -o skyvence -g skyvence -m 700 -d /home/alice/.ssh
-install -o skyvence -g skyvence -m 600 /dev/stdin /home/alice/.ssh/authorized_keys <<'EOF'
+install -o skyvence -g skyvence -m 700 -d /home/skyvence/.ssh
+install -o skyvence -g skyvence -m 600 /dev/stdin /home/skyvence/.ssh/authorized_keys <<'EOF'
 <Clef ssh Publique ici>
 EOF
 ```
@@ -313,3 +313,4 @@ echo "✓ SSH secured"
 
 echo "Configuration complete"
 ```
+
