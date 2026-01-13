@@ -1,4 +1,4 @@
-[![trophy](https://github-profile-trophy.vercel.app/?username=SkyVence&theme=darkhub)](https://github.com/ryo-ma/github-profile-trophy)
+[![trophy](https://github-profile-trophy-liard-delta.vercel.app/?username=SkyVence&theme=darkhub)](https://github.com/ryo-ma/github-profile-trophy)
 
 ## 📊 GitHub Stats
 
