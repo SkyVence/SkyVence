@@ -21,7 +21,7 @@ idéalement orienté Backend et/ou C++.
 
 ## En cours d'apprentissage
 - C++
-- Vulkan (Vulkan Triangle en 3 jours [Basicly-the-vulkan-triangle](https://github.com/skyvence/](https://github.com/SkyVence/Basicly-the-vulkan-triangle))
+- Vulkan (Vulkan Triangle en 3 jours [Basicly-the-vulkan-triangle](https://github.com/SkyVence/Basicly-the-vulkan-triangle)
 
 Basé à Talence, France. <br>
 *Contact* : me@skyvence.dev
