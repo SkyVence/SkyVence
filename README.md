@@ -1,7 +1,6 @@
 # Antoine Mathie
 
 20 ans, étudiant en première année de Bachelor Informatique à Ynov Bordeaux, France. <br>
-Actuellement en train de développer un jeu vidéo avec des amis suite à une Game Jam (48h). [Demo](https://nepnath.itch.io/please-be-better)<br>
 
 
 ---
